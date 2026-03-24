@@ -1,0 +1,414 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #00b894;
+  --primary-dark: #00a381;
+  --danger: #e74c3c;
+  --warning: #f39c12;
+  --low: #00b894;
+  --mid: #f39c12;
+  --high: #e74c3c;
+  --bg: #f0f2f5;
+  --card-bg: #ffffff;
+  --text: #2d3436;
+  --text-sub: #636e72;
+  --border: #dfe6e9;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans",
+    "Noto Sans JP", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.header {
+  background: linear-gradient(135deg, #00b894, #00cec9);
+  color: white;
+  padding: 24px 16px;
+  text-align: center;
+}
+
+.header-inner {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.tagline {
+  font-size: 14px;
+  opacity: 0.9;
+  margin-top: 4px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--bg);
+}
+
+/* 現在の料金 */
+.current-price-card {
+  text-align: center;
+  background: linear-gradient(135deg, #ffffff, #f8fffe);
+}
+
+.price-display {
+  margin: 16px 0 12px;
+}
+
+.price-value {
+  font-size: 64px;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1;
+  transition: color 0.3s;
+}
+
+.price-value.high {
+  color: var(--danger);
+}
+
+.price-value.mid {
+  color: var(--warning);
+}
+
+.price-unit {
+  font-size: 18px;
+  color: var(--text-sub);
+  margin-left: 4px;
+}
+
+.price-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--primary);
+  animation: pulse 2s infinite;
+}
+
+.status-dot.high {
+  background: var(--danger);
+}
+
+.status-dot.mid {
+  background: var(--warning);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.time-slot {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.next-update {
+  font-size: 13px;
+  color: var(--text-sub);
+}
+
+/* サマリー */
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.summary-item {
+  background: var(--bg);
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+}
+
+.summary-label {
+  font-size: 12px;
+  color: var(--text-sub);
+  font-weight: 600;
+}
+
+.summary-value {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 4px 0 2px;
+}
+
+.summary-value.low {
+  color: var(--low);
+}
+
+.summary-value.high {
+  color: var(--high);
+}
+
+.summary-sub {
+  font-size: 11px;
+  color: var(--text-sub);
+}
+
+/* グラフ */
+.chart-container {
+  width: 100%;
+  height: 220px;
+  position: relative;
+  margin-bottom: 12px;
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.chart-legend {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--text-sub);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.legend-color.low {
+  background: var(--low);
+}
+
+.legend-color.mid {
+  background: var(--mid);
+}
+
+.legend-color.high {
+  background: var(--high);
+}
+
+.legend-color.current {
+  background: #6c5ce7;
+}
+
+/* アドバイス */
+.advice-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.advice-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px;
+  background: var(--bg);
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.advice-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.advice-text strong {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.advice-text span {
+  color: var(--text-sub);
+  font-size: 13px;
+}
+
+/* シミュレーター */
+.slider-group {
+  margin-bottom: 20px;
+}
+
+.slider-group label {
+  font-size: 14px;
+  color: var(--text-sub);
+  display: block;
+  margin-bottom: 8px;
+}
+
+input[type="range"] {
+  width: 100%;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--border);
+  border-radius: 3px;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  background: var(--primary);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 184, 148, 0.4);
+}
+
+.sim-results {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sim-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: var(--bg);
+  border-radius: 10px;
+}
+
+.sim-item.savings {
+  background: linear-gradient(135deg, #dfe6e9, #b2bec3);
+  font-weight: 700;
+}
+
+.sim-item.savings .sim-value {
+  color: var(--primary);
+  font-size: 20px;
+}
+
+.sim-label {
+  font-size: 14px;
+  color: var(--text-sub);
+}
+
+.sim-value {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* 週間予測 */
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.forecast-day {
+  text-align: center;
+  padding: 10px 4px;
+  background: var(--bg);
+  border-radius: 10px;
+}
+
+.forecast-day-name {
+  font-size: 11px;
+  color: var(--text-sub);
+  font-weight: 600;
+}
+
+.forecast-day-price {
+  font-size: 16px;
+  font-weight: 800;
+  margin: 6px 0 4px;
+}
+
+.forecast-day-bar {
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  margin-top: 4px;
+}
+
+.forecast-day-trend {
+  font-size: 10px;
+  color: var(--text-sub);
+}
+
+/* フッター */
+.footer {
+  text-align: center;
+  padding: 24px 16px;
+  font-size: 13px;
+  color: var(--text-sub);
+}
+
+.footer-note {
+  font-size: 11px;
+  margin-top: 4px;
+  opacity: 0.7;
+}
+
+/* レスポンシブ */
+@media (max-width: 400px) {
+  .price-value {
+    font-size: 48px;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .forecast-grid {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+
+  .forecast-day-price {
+    font-size: 13px;
+  }
+}
