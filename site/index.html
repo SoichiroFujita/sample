@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>Looop電気 - スマート電力管理</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="looop.css">
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-inner">
+        <h1 class="logo">⚡ Looop電気</h1>
+        <p class="tagline">スマート電力管理アプリ</p>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- 現在の電力料金カード -->
+      <section class="card current-price-card">
+        <h2 class="card-title">現在の電力料金</h2>
+        <div class="price-display">
+          <span class="price-value" id="currentPrice">--</span>
+          <span class="price-unit">円/kWh</span>
+        </div>
+        <div class="price-status" id="priceStatus">
+          <span class="status-dot"></span>
+          <span class="status-text">読込中...</span>
+        </div>
+        <div class="time-slot">
+          <span id="currentTimeSlot">--:-- 〜 --:--</span>
+        </div>
+        <div class="next-update">
+          次の更新まで: <span id="countdown">--:--</span>
+        </div>
+      </section>
+
+      <!-- 本日のサマリー -->
+      <section class="card summary-card">
+        <h2 class="card-title">本日のサマリー</h2>
+        <div class="summary-grid">
+          <div class="summary-item">
+            <div class="summary-label">最安値</div>
+            <div class="summary-value low" id="todayLow">--</div>
+            <div class="summary-sub" id="todayLowTime">--:--</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">最高値</div>
+            <div class="summary-value high" id="todayHigh">--</div>
+            <div class="summary-sub" id="todayHighTime">--:--</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">平均</div>
+            <div class="summary-value" id="todayAvg">--</div>
+            <div class="summary-sub">円/kWh</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">推定コスト</div>
+            <div class="summary-value" id="todayCost">--</div>
+            <div class="summary-sub">円</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 48コマ料金グラフ -->
+      <section class="card chart-card">
+        <h2 class="card-title">本日の電力料金推移（30分単位）</h2>
+        <div class="chart-container">
+          <canvas id="priceChart"></canvas>
+        </div>
+        <div class="chart-legend">
+          <span class="legend-item"><span class="legend-color low"></span>安い</span>
+          <span class="legend-item"><span class="legend-color mid"></span>普通</span>
+          <span class="legend-item"><span class="legend-color high"></span>高い</span>
+          <span class="legend-item"><span class="legend-color current"></span>現在</span>
+        </div>
+      </section>
+
+      <!-- 節約アドバイス -->
+      <section class="card advice-card">
+        <h2 class="card-title">💡 節約アドバイス</h2>
+        <div class="advice-list" id="adviceList">
+          <!-- JSで生成 -->
+        </div>
+      </section>
+
+      <!-- 使用量シミュレーター -->
+      <section class="card simulator-card">
+        <h2 class="card-title">使用量シミュレーター</h2>
+        <div class="simulator">
+          <div class="slider-group">
+            <label for="usageSlider">月間使用量: <strong id="usageValue">300</strong> kWh</label>
+            <input type="range" id="usageSlider" min="100" max="800" value="300" step="10">
+          </div>
+          <div class="sim-results">
+            <div class="sim-item">
+              <div class="sim-label">Looop推定月額</div>
+              <div class="sim-value" id="simLooop">--</div>
+            </div>
+            <div class="sim-item">
+              <div class="sim-label">一般的な従量電灯</div>
+              <div class="sim-value" id="simTraditional">--</div>
+            </div>
+            <div class="sim-item savings">
+              <div class="sim-label">おトク額</div>
+              <div class="sim-value" id="simSavings">--</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 週間予測 -->
+      <section class="card forecast-card">
+        <h2 class="card-title">📊 今週の料金予測</h2>
+        <div class="forecast-grid" id="forecastGrid">
+          <!-- JSで生成 -->
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>⚡ Looop電気アプリ — 市場連動型料金をリアルタイムで確認</p>
+      <p class="footer-note">※ 表示価格はシミュレーションです</p>
+    </footer>
+
+    <script src="looop.js"></script>
+  </body>
+</html>
